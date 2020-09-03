@@ -12,7 +12,7 @@ export class CatsController {
     this.catsService.create(createCatdto);
   }
 
-  @Get()
+  @Get('all')
   async findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
   }
