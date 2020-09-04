@@ -1,16 +1,20 @@
 import { Controller, Get, Query, Post, Body, Redirect, Param } from '@nestjs/common';
 import { CreateDogsDto } from './create-dogs.dto';
+import { DogsService } from './service/dogs.service';
+import { Dog } from './interface/dog.interface';
 
 
 @Controller('dogs')
 export class DogsController {
-  @Get('/111/:id')
-  find(@Param() param):string{
-      return `This is a #${param.id} dog.`
+  constructor(private dogsService: DogsService){}
+
+  @Get('')
+  async find():Promise<Dog[]>{
+      return this.dogsService.findAll();
   }
 
   @Post('create')
-  create(@Body() createDogsDto: CreateDogsDto) {
-      return 'This is a new Dog.'
+  async create(@Body() createDogsDto: CreateDogsDto) {
+      this.dogsService.create(createDogsDto);
   }
 }
