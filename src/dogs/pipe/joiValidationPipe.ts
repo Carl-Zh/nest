@@ -11,5 +11,4 @@ export class JoiValidationPipe implements PipeTransform{
         }
         return value;
     }
-    
 }
